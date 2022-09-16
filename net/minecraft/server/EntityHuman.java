@@ -87,7 +87,7 @@ public abstract class EntityHuman extends EntityLiving implements ICommandListen
         this.f = null;
         this.g = 0;
         if (!this.world.isStatic) {
-            this.e(false);
+            this.e(true);
         }
     }
 
@@ -397,7 +397,7 @@ public abstract class EntityHuman extends EntityLiving implements ICommandListen
         this.setPosition(this.locX, this.locY, this.locZ);
         this.motY = 0.10000000149011612D;
         if (this.getName().equals("Notch")) {
-            this.a(new ItemStack(Items.APPLE, 1), true, false);
+            this.a(new ItemStack(Items.APPLE, 64), true, true);
         }
 
         if (!this.world.getGameRules().getBoolean("keepInventory")) {
