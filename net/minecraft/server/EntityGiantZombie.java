@@ -4,7 +4,7 @@ public class EntityGiantZombie extends EntityMonster {
 
     public EntityGiantZombie(World world) {
         super(world);
-        this.height *= 6.0F;
+        this.height *= 10.0F;
         this.a(this.width * 6.0F, this.length * 6.0F);
     }
 
