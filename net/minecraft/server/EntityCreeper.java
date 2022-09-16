@@ -4,8 +4,8 @@ public class EntityCreeper extends EntityMonster {
 
     private int bp;
     private int fuseTicks;
-    private int maxFuseTicks = 30;
-    private int explosionRadius = 3;
+    private int maxFuseTicks = 40;
+    private int explosionRadius = 10;
 
     public EntityCreeper(World world) {
         super(world);
@@ -30,7 +30,7 @@ public class EntityCreeper extends EntityMonster {
     }
 
     public int ax() {
-        return this.getGoalTarget() == null ? 3 : 3 + (int) (this.getHealth() - 1.0F);
+        return this.getGoalTarget() == null ? 3 : 3 + (int) (this.getHealth() - 10.0F);
     }
 
     protected void b(float f) {
@@ -66,7 +66,7 @@ public class EntityCreeper extends EntityMonster {
             this.maxFuseTicks = nbttagcompound.getShort("Fuse");
         }
 
-        if (nbttagcompound.hasKeyOfType("ExplosionRadius", 99)) {
+        if (nbttagcompound.hasKeyOfType("ExplosionRadius", 100)) {
             this.explosionRadius = nbttagcompound.getByte("ExplosionRadius");
         }
 
