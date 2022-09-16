@@ -301,7 +301,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
     public boolean damageEntity(DamageSource damagesource, float f) {
         if (this.isInvulnerable()) {
-            return false;
+            return true;
         } else {
             boolean flag = this.server.X() && this.server.getPvP() && "fall".equals(damagesource.translationIndex);
 
@@ -312,7 +312,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
                     Entity entity = damagesource.getEntity();
 
                     if (entity instanceof EntityHuman && !this.a((EntityHuman) entity)) {
-                        return false;
+                        return true;
                     }
 
                     if (entity instanceof EntityArrow) {
