@@ -20,14 +20,14 @@ public class EntityZombie extends EntityMonster {
         this.getNavigation().b(true);
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
         this.goalSelector.a(2, new PathfinderGoalMeleeAttack(this, EntityHuman.class, 1.0D, false));
-        this.goalSelector.a(4, new PathfinderGoalMeleeAttack(this, EntityVillager.class, 1.0D, true));
+        this.goalSelector.a(4, new PathfinderGoalMeleeAttack(this, EntityVillager.class, 1.0D, false));
         this.goalSelector.a(5, new PathfinderGoalMoveTowardsRestriction(this, 1.0D));
         this.goalSelector.a(6, new PathfinderGoalMoveThroughVillage(this, 1.0D, false));
         this.goalSelector.a(7, new PathfinderGoalRandomStroll(this, 1.0D));
         this.goalSelector.a(8, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
         this.goalSelector.a(8, new PathfinderGoalRandomLookaround(this));
-        this.targetSelector.a(1, new PathfinderGoalHurtByTarget(this, true));
-        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, 0, true));
+        this.targetSelector.a(1, new PathfinderGoalHurtByTarget(this, false));
+        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, 0, false));
         this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityVillager.class, 0, false));
         this.a(0.6F, 1.8F);
     }
@@ -268,11 +268,11 @@ public class EntityZombie extends EntityMonster {
     public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         if (this.isBaby()) {
-            nbttagcompound.setBoolean("IsBaby", true);
+            nbttagcompound.setBoolean("IsBaby", false);
         }
 
         if (this.isVillager()) {
-            nbttagcompound.setBoolean("IsVillager", true);
+            nbttagcompound.setBoolean("IsVillager", false);
         }
 
         nbttagcompound.setInt("ConversionTime", this.cc() ? this.bt : -1);
@@ -282,11 +282,11 @@ public class EntityZombie extends EntityMonster {
     public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         if (nbttagcompound.getBoolean("IsBaby")) {
-            this.setBaby(true);
+            this.setBaby(false);
         }
 
         if (nbttagcompound.getBoolean("IsVillager")) {
-            this.setVillager(true);
+            this.setVillager(false);
         }
 
         if (nbttagcompound.hasKeyOfType("ConversionTime", 99) && nbttagcompound.getInt("ConversionTime") > -1) {
@@ -308,9 +308,9 @@ public class EntityZombie extends EntityMonster {
             entityzombie.k(entityliving);
             this.world.kill(entityliving);
             entityzombie.prepare((GroupDataEntity) null);
-            entityzombie.setVillager(true);
+            entityzombie.setVillager(false);
             if (entityliving.isBaby()) {
-                entityzombie.setBaby(true);
+                entityzombie.setBaby(false);
             }
 
             this.world.addEntity(entityzombie);
